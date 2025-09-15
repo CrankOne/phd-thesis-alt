@@ -1,0 +1,141 @@
+%\RequirePackage[l2tabu,orthodox]{nag}
+% Формат А4, 14pt (ГОСТ Р 7.0.11-2011, 5.3.6)
+\documentclass[a4paper,14pt,oneside,openany]{memoir}
+%\usepackage[utf8]{inputenc}  % ignored in utf-based engines
+
+%                             ______________________
+% ___________________________/ Define page geometry
+\usepackage{geometry}
+ \geometry{
+ a4paper,
+ %total={170mm,257mm},
+ left=25mm,
+ top=20mm,
+ bottom=20mm,
+ right=10mm
+ }
+\linespread{1.5}
+\setlength{\parindent}{35pt}
+
+%      _____________________________________________
+% ___/ This puts page numbers at bottom of the page
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{} % sets both header and footer to nothing
+\renewcommand{\headrulewidth}{0pt}  % remove line on top added by fancyhdr
+\fancyhead[C]{\thepage} % Centered pagenumber on the top. ("\cfoot{\thepage}" is deprecated.)
+%\fancyhead[RO,LE]{\leftmark} % This prints the chapter in the head. You might customize it, like "\textsc{\leftmark}".
+%\fancyhead[RE,LO]{} % Empty argument, so that only the chapter is in the title. With "\rightmark" there would be the section.
+% "RE" = right on even pagenumbers
+% "RO" = right on odd pagenumbers
+% "LE" = left on even pagenumbers
+% "LO" = left on odd pagenumbers
+
+% \text{} in formula, piecewise functions
+\usepackage{amsmath}
+% \lesssim and other funny math glyphs
+\usepackage{amssymb}
+% Code snippets
+\usepackage{listings}
+
+\usepackage{caption}
+\captionsetup[figure]{name=Рисунок}  % "Рисунок" вместо "Рис."
+\usepackage{subcaption}
+%\usepackage{subfigure}
+%\usepackage{wrapfig}
+\usepackage{wrapfig}
+\usepackage{flafter}  % ensure figure is always after its reference
+
+\usepackage{xcolor}  % for \definecolor used by gnuplot's epslatex
+
+% Hyphenation
+\usepackage{polyglossia}
+\setmainlanguage{russian}
+\setotherlanguage{english}
+\setkeys{russian}{babelshorthands=true}
+\setdefaultlanguage{russian}
+
+\setmonofont{LiberationMono}[Scale=0.87]
+%\newfontfamily\cyrillicfonttt{LiberationMono}[Scale=0.87] % cyr monospace
+% стандартные лигатуры TeX, замены нескольких дефисов на тире и т. п. Настройки
+% моноширинного шрифта должны идти до этой строки, чтобы при врезках кода
+% программ в коде не применялись лигатуры и замены дефисов
+\defaultfontfeatures{Ligatures=TeX}
+%\setmainfont{LiberationSerif}
+%\newfontfamily\cyrillicfont{LiberationSerif}
+%\setsansfont{LiberationSans}
+%\newfontfamily\cyrillicfontsf{LiberationSans}
+\setmainfont{CMU Serif}[Ligatures=TeX]
+
+% For bra-ket notation (use as \braket{0|0}
+\usepackage{braket}
+
+% images
+\usepackage[xetex]{graphicx}
+%\usepackage{graphicx}
+\graphicspath{{imgs.view/}}
+
+% Strangely, LaTeX is confused with multiple dots in file names. This was
+% supposed to fix it, however it seems to broke up the \graphicspath{} above.
+%\usepackage[multidot]{grffile}
+
+\usepackage[acronym,nopostdot,nonumberlist]{glossaries}
+% nopostdot -- do not use dot after the article
+% nonumberlist -- do not print list of pages
+%
+% Custom Glossary Style {{{
+\newglossarystyle{plainemdash}{
+  \setglossarystyle{list}
+  \renewenvironment{theglossary}
+    {\begin{list}{}{\setlength{\leftmargin}{0pt}
+                    \setlength{\labelwidth}{0pt}
+                    \setlength{\itemindent}{6.75pt}
+                    \setlength{\listparindent}{0pt}
+                    \setlength{\parsep}{\parskip}}}
+    {\end{list}}
+    \renewcommand*{\glossentry}[2]{%
+        \item[\glsentryitem{##1}\glstarget{##1}{\textbf{\glossentryname{##1}}}]%
+        ---\ %
+        \glossentrydesc{##1}%
+        \unskip\leaders\hbox to 2.9mm{\hss.}\hfill##2}%
+}
+
+%\renewcommand*\glossaryentryfield[4]{%
+%    \item
+%    \noindent \glstarget{##1}{##2}\par}
+%\renewcommand*{\glossarysubentryfield}[6]{%
+%    \item
+%    \noindent\hspace*{2em}##1\ ---\ ##5\par}
+%  \renewcommand*{\glsgroupheading}[1]{\par\medskip}
+
+% }}} End custom Glossary Style
+
+\usepackage{hyperref}
+
+%       ___
+% ____/ Bibliography customization (for two styles)
+
+\usepackage[
+	natbib		= true,
+	style		= gost-numeric,
+	sorting		= none,
+	backend		= biber,
+	language	= autobib,
+	autolang	= other]{biblatex}
+%\usepackage[
+%    backend=biber
+%  , defernumbers=true
+%  %, style=alphabetic
+%  %, labelnumber
+%  , style=gost-numeric  % or 'gost-authoryear' depending on needs
+%  %, language=auto
+%  %, autolang=other
+%  , sorting=none        % We'll manage ordering manually
+%]{biblatex}
+\addbibresource{references.bib}
+
+\usepackage{tocloft,calc}  % XXX?
+\setcounter{secnumdepth}{2}
+\setcounter{tocdepth}{2}
+
+

@@ -1,0 +1,19 @@
+% typewriter font for computer words: tokens, literals, etc.
+\newcommand*{\codeword}[1]{\texttt{#1}}
+% at some epslatex plots, used to decrease on-plot labels font size
+\newcommand{\smllbl}[0]{\tiny}
+% Russian areatangent (hyperbolic revert tangent)
+%\usepackage{amsmath}
+\DeclareMathOperator\arctanh{arth}
+% Differential operator
+\newcommand*{\diffdchar}{d}    % or {ⅆ}, or {\mathrm{d}}, or whatever standard you’d like to adhere to
+\newcommand*{\dd}{\mathop{\diffdchar\!}}
+\catcode`\ⅆ=\active
+\letⅆ=\dd
+% Double tilde
+%\usepackage{accents}
+\newcommand{\dbtilde}[1]{\accentset{\approx}{#1}}
+\newcommand{\vardbtilde}[1]{\tilde{\raisebox{0pt}[0.85\height]{$\tilde{#1}$}}}
+% Complex i and exponential
+\newcommand{\complexI}[0]{\mathfrak{i}}
+\newcommand{\expNum}[0]{\mathfrak{e}}

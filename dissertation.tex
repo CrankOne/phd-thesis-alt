@@ -16,6 +16,7 @@
 \input{common/data}             % Основные сведения
 \input{common/fonts}            % Определение шрифтов (частичное)
 \input{common/styles}           % Стили общие для диссертации и автореферата
+\input{common/userdefs}         % Пользовательские определения
 \input{Dissertation/disstyles}  % Стили для диссертации
 \input{Dissertation/userstyles} % Стили для специфических пользовательских задач
 
@@ -67,12 +68,21 @@
 }{\counterwithin{figure}{chapter}}
 \ifnumequal{\value{contnumtab}}{1}{\counterwithout{table}{chapter}
 }{\counterwithin{table}{chapter}}
-\include{Dissertation/part1}           % Глава 1
-\include{Dissertation/part2}           % Глава 2
-\include{Dissertation/part3}           % Глава 3
+
+\include{Dissertation/chapters/01-architecture}     % Глава 1
+\include{Dissertation/chapters/02-exp-na64}         % Глава 2
+\include{Dissertation/chapters/03-implem}           % Глава 3
+\include{Dissertation/chapters/04-result-prob}      % Глава 4
+
 \include{Dissertation/conclusion}      % Заключение
-\include{Dissertation/acronyms}        % Список сокращений и условных обозначений
-\include{Dissertation/dictionary}      % Словарь терминов
+
+% Список сокращений и условных обозначений
+\printglossary[type=\acronymtype,style=plainemdash,title={Обозначения и сокращения}]
+\printnomenclature[3.5cm] % Значение ширины столбца с обозначениями стоит подбирать вручную
+
+% Словарь терминов
+\printglossary[type=main,style=plainemdash,title={Термины и определения}]
+
 \include{Dissertation/references}      % Список литературы
 \include{Dissertation/lists}           % Списки таблиц и изображений (иллюстративный материал)
 

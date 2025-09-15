@@ -122,3 +122,30 @@
 %\definecolor{linkcolor}{rgb}{0,0,0} %black
 %\definecolor{citecolor}{rgb}{0,0,0} %black
 %\definecolor{urlcolor}{rgb}{0,0,0} %black
+
+%                                 ________________________
+% ______________________________/ User-defined glossaries
+
+\usepackage[acronym,nopostdot,nonumberlist]{glossaries}
+% nopostdot -- do not use dot after the article
+% nonumberlist -- do not print list of pages
+%
+% Custom Glossary Style {{{
+\newglossarystyle{plainemdash}{
+  \setglossarystyle{list}
+  \renewenvironment{theglossary}
+    {\begin{list}{}{\setlength{\leftmargin}{0pt}
+                    \setlength{\labelwidth}{0pt}
+                    \setlength{\itemindent}{6.75pt}
+                    \setlength{\listparindent}{0pt}
+                    \setlength{\parsep}{\parskip}}}
+    {\end{list}}
+    \renewcommand*{\glossentry}[2]{%
+        \item[\glsentryitem{##1}\glstarget{##1}{\textbf{\glossentryname{##1}}}]%
+        ---\ %
+        \glossentrydesc{##1}%
+        \unskip\leaders\hbox to 2.9mm{\hss.}\hfill##2}%
+}
+\makeglossaries
+\input{Dissertation/acronyms}
+\input{Dissertation/dictionary}
