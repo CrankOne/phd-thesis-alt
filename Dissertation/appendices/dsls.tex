@@ -3,6 +3,24 @@
 
 Грамматики формулируются в форме Бэкуса-Наура~\cite{backusNaurAlgol1963revised}.
 
+\section{Язык имён детекторов COMPASS}
+
+В COMPASS DAQ в основном имена детекторов сформулированы,
+согласно следующей грамматике:
+
+\begin{verbatim}
+    det ID ::= <detector kin> <station number>
+    
+    detector kin ::= <буква> | <detector kin> <буква>
+    
+    station number ::= <цифра> | <station number> <цифра>
+\end{verbatim}
+где \texttt{<буква>} и \texttt{<цифра>} --- терминалы грамматики.
+
+Примерами грамматически корректных имён детекторов в такой простейшей
+грамматике являются \texttt{ECAL0} (калориметр ECAL), \texttt{HCAL3}
+(третий модуль адронного калориметра), \texttt{MM03} и т.д.
+
 \section{Язык селекторов}
 
 В качестве альтернативы строковым \acrshort{dsl}, для фильтрации записей
